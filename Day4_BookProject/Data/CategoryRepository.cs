@@ -1,7 +1,8 @@
-﻿using Day4_BookProject.Models;
+﻿using Day4_BookProject.Exceptions;
+using Day4_BookProject.Models;
 
 namespace Day4_BookProject.Data;
-
+//EXCEPTION'LARI YAZ.
 public class CategoryRepository : ICategoryRepository
 {
 
@@ -26,10 +27,11 @@ public class CategoryRepository : ICategoryRepository
     public void Delete(string id)
     {
         Category? category = _categories.SingleOrDefault(c => c.Id == id);
-        if (category is not null)
+        if (category is null)
         {
-            _categories.Remove(category);
+            throw new CategoryNotFoundException(id);
         }
+        _categories.Remove(category);
     }
 
     public List<Category> GetAll()
@@ -40,10 +42,10 @@ public class CategoryRepository : ICategoryRepository
     public Category? GetById(string id)
     {
         Category? category = _categories.FirstOrDefault(c => c.Id == id);
-        if (category is not null)
+        if (category is null)
         {
-            return category;
+            throw new CategoryNotFoundException(id);
         }
-        return null;
+        return category;
     }
 }
