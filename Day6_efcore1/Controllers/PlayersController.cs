@@ -43,9 +43,35 @@ public class PlayersController : ControllerBase
         {
             return Ok(response);
         }
-        if(response.StatusCode==HttpStatusCode.NotFound)
+        if (response.StatusCode == HttpStatusCode.NotFound)
         {
             return NotFound(response);
+        }
+        return BadRequest(response);
+    }
+
+    [HttpDelete("delete")]
+    public IActionResult Delete([FromQuery] int id)
+    {
+        var response = _playerService.Delete(id);
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            return Ok(response);
+        }
+        if (response.StatusCode == HttpStatusCode.NotFound)
+        {
+            return NotFound(response);
+        }
+        return BadRequest(response);
+    }
+
+    [HttpGet("getall")]
+    public IActionResult GetAll()
+    {
+        var response = _playerService.GetList();
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            return Ok(response);
         }
         return BadRequest(response);
     }

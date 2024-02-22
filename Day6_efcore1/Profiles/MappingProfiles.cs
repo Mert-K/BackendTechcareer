@@ -11,7 +11,7 @@ namespace Day6_efcore1.Profiles
         {
             CreateMap<CreatePlayerRequestDto, Player>();
             CreateMap<UpdatePlayerRequestDto, Player>();
-            CreateMap<Player, PlayerResponseDto>();
+            CreateMap<Player, PlayerResponseDto>(); //Player'ı PlayerResponseDto'ya çevirme profili
         }
     }
 }
