@@ -11,10 +11,6 @@ namespace Day6_efcore1.Context
 
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS; Database = Sport_DB; Trusted_Connection=True; TrustServerCertificate=True;");
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

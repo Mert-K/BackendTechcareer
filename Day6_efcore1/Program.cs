@@ -3,6 +3,7 @@ using Day6_efcore1.Context;
 using Day6_efcore1.Repositories.Abstract;
 using Day6_efcore1.Repositories.Concrete;
 using Day6_efcore1.Services.Concrete;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,7 +16,11 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly()); //AutoMapper Third party kütüphanesi için eklendi. IMapper interface'inin IOS kaydý için eklendi.
 
-builder.Services.AddDbContext<BaseDbContext>();
+builder.Services.AddDbContext<BaseDbContext>(opt =>
+    {
+        opt.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"));
+    });
+
 
 // Dependency Injection LifeCycle
 // AddSingleton -> Uygulama boyunca bellekte tek 1 tane instance tutar

@@ -41,7 +41,7 @@ public class PlayersController : ControllerBase
         var response = _playerService.GetById(id);
         if (response.StatusCode == HttpStatusCode.OK)
         {
-            return Ok(response);
+            return Ok(response); //Swagger ekranındaki Response body kısmı
         }
         if (response.StatusCode == HttpStatusCode.NotFound)
         {
@@ -56,7 +56,7 @@ public class PlayersController : ControllerBase
         var response = _playerService.Delete(id);
         if (response.StatusCode == HttpStatusCode.OK)
         {
-            return Ok(response);
+            return Ok(response); //Swagger ekranındaki Response body kısmı
         }
         if (response.StatusCode == HttpStatusCode.NotFound)
         {
@@ -71,7 +71,7 @@ public class PlayersController : ControllerBase
         var response = _playerService.GetList();
         if (response.StatusCode == HttpStatusCode.OK)
         {
-            return Ok(response);
+            return Ok(response); //Swagger ekranındaki Response body kısmı
         }
         return BadRequest(response);
     }
